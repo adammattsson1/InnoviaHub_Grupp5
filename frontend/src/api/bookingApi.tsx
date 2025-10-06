@@ -5,7 +5,7 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Get all bookings for admin/overview
 export async function fetchBookings(token: string): Promise<Booking[]> {
-  const res = await fetch(`${BASE_URL}/api/bookings`, {
+  const res = await fetch(`http://localhost:5296/api/bookings`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   if (!res.ok) throw new Error("Couldnt get bookings");
@@ -14,7 +14,7 @@ export async function fetchBookings(token: string): Promise<Booking[]> {
 
 // Get all bookings for logged in user
 export async function fetchMyBookings(token: string): Promise<Booking[]> {
-  const res = await fetch(`${BASE_URL}/api/bookings/myBookings`, {
+  const res = await fetch(`http://localhost:5296/api/bookings/myBookings`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   if (!res.ok) throw new Error("Couldnt get my bookings");
@@ -23,7 +23,7 @@ export async function fetchMyBookings(token: string): Promise<Booking[]> {
 
 //Creates a booking for a resource
 export async function createBooking(token: string, booking: BookingDTO) {
-  const res = await fetch(`${BASE_URL}/api/bookings`, {
+  const res = await fetch(`http://localhost:5296/api/bookings`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export async function createBooking(token: string, booking: BookingDTO) {
 
 // Cancels a booking
 export async function cancelBooking(token: string, bookingId: number) {
-  const res = await fetch(`${BASE_URL}/api/bookings/cancel/${bookingId}`, {
+  const res = await fetch(`http://localhost:5296/api/bookings/cancel/${bookingId}`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -51,7 +51,7 @@ export async function cancelBooking(token: string, bookingId: number) {
 
 //Deletes a booking
 export async function deleteBooking(token: string, bookingId: number) {
-  const res = await fetch(`${BASE_URL}/api/bookings/delete/${bookingId}`, {
+  const res = await fetch(`http://localhost:5296/api/bookings/delete/${bookingId}`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
   });

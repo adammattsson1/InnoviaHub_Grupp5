@@ -5,7 +5,7 @@ const BASE = import.meta.env.VITE_API_BASE_URL;
 
 //Getting recourses from endpoint
 export async function fetchResources(token: string): Promise<Resource[]> {
-  const res = await fetch(`${BASE}/api/resources`, {
+  const res = await fetch(`http://localhost:5296/api/resources`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
