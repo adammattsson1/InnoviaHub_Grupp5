@@ -370,7 +370,7 @@ export default function BookingsPage() {
         </div>
       )}
 
-      <div className={"fixed bottom-5 right-5"}>
+      <div className={"fixed bottom-5 left-5"}>
         <Ai_assistant />
       </div>
     </div>
