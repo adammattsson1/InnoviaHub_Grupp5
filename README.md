@@ -8,12 +8,19 @@ Detta projekt är ett bokningssystem för ett coworkingcenter där man kan boka 
 - ASP.NET Core Web API
 - MySQL
 - SignalR 
+- OpenAI
 
 ## Annat
 - Frontend körs på [http://localhost:5173](http://localhost:5173)
 - Backend körs på [http://localhost:5296](http://localhost:5296)
 - Använder RESTful API.
 - Använder JWT-token för autentisering.
+
+## AI
+På "booking page" finns en AI assistent som svara på frågor om tillgänlighet av resurserna.
+Den skickar meddelandet till backend som sedan skickar den till OpenAI:s API. Det skickas också med en beskrivning av funktionen GetBookingsByResourceType.
+Funktionen skickar tillbaka aktiva bokningar. När AI:n behöver bokningarna skickas ett "function call" till backend vilket sedan skickar resultaten av funktionen till Open AIs API.
+Sedan skickas API:ets svar på användarens meddelande.
 
 # Appbyggande
 ## Nödvändiga installationer
