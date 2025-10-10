@@ -9,6 +9,7 @@ import ResourceCard from "@/components/Resource/ResourceCard";
 import CalendarComponent from "@/components/Calender/calenderComponent";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
+import Ai_assistant from "@/components/AI_assistant/AI_assistant";
 
 //Builds a key form stockholm date, month year date
 const dateKeySthlm = (d: Date | string) => {
@@ -368,6 +369,10 @@ export default function BookingsPage() {
           </div>
         </div>
       )}
+
+      <div className={"fixed bottom-5 right-5"}>
+        <Ai_assistant />
+      </div>
     </div>
   );
 }

@@ -88,7 +88,7 @@ namespace backend.Controllers
                     new
                     {
                         role = "system",
-                        content = "You are a booking assistant. You will answer questions about the availability of bookable resources. "
+                        content = "You are a booking assistant. You will answer questions about the availability of bookable resources."
                     },
                     new
                     {
