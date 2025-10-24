@@ -16,6 +16,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import Sensors from "./pages/Admin/Sensors.tsx";
 
 function App() {
     return (
@@ -54,9 +55,7 @@ function App() {
                                 <Route
                                     path=""
                                     element={
-                                        <AdminProtectedRoute>
-                                            <AdminLayout />
-                                        </AdminProtectedRoute>
+                                        <AdminLayout />
                                     }
                                 >
                                     <Route
@@ -80,6 +79,10 @@ function App() {
                                     <Route
                                         path="resources"
                                         element={<Resources />}
+                                    />
+                                    <Route
+                                        path="sensors"
+                                        element={<Sensors />}
                                     />
                                     <Route
                                         path="*"

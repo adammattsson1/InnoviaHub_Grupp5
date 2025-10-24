@@ -63,6 +63,12 @@ export const NAV_ITEMS = [
         icon: "MdBusiness",
         path: "/admin/resources",
     },
+    {
+        id: "sensors",
+        label: "Sensors",
+        icon: "MdBusiness",
+        path: "/admin/sensors",
+    },
 ] as const;
 
 // User Roles

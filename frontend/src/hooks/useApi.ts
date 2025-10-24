@@ -690,3 +690,30 @@ export const useSystemLogs = () => {
         },
     });
 };
+
+export async function fetchTenant(slug: string)
+{
+    const res = await fetch(`http://localhost:5101/api/tenants/by-slug/${slug}`);
+    if (!res.ok) throw new Error("Couldn't fetch tenant");
+
+    const json = await res.json();
+    return json;
+}
+
+export async function fetchDevices(tenantId: string)
+{
+    const res = await fetch(`http://localhost:5101/api/tenants/${tenantId}/devices`);
+    if (!res.ok) throw new Error("Couldn't fetch devices");
+
+    const json = await res.json();
+    return json;
+}
+
+export async function fetchMeasurements(tenantId: string, deviceId: string)
+{
+    const res = await fetch(`http://localhost:5104/portal/${tenantId}/devices/${deviceId}/latest`);
+    if (!res.ok) throw new Error("Couldn't fetch measurements");
+
+    const json = await res.json();
+    return json;
+}

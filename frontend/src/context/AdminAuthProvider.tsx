@@ -58,9 +58,7 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({
                         // Try to refresh token to ensure it's valid
                         try {
                             const refreshResponse = await fetch(
-                                `${
-                                    import.meta.env.VITE_API_BASE_URL
-                                }/api/auth/refresh-token`,
+                                `http://localhost:5296/api/auth/refresh-token`,
                                 {
                                     method: "POST",
                                     headers: {

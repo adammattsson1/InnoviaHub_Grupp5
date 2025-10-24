@@ -22,7 +22,7 @@ class ApiService {
   private token: string | null = null;
 
   constructor() {
-    this.baseURL = ADMIN_API_BASE_URL;
+    this.baseURL = "http://localhost:5296/api";
     this.token = localStorage.getItem('token');
   }
 
