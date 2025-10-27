@@ -21,7 +21,7 @@ const Sensors: React.FC = () => {
   type Measurement =
   {
     deviceId: string
-    type: String,
+    type: string,
     value: Number
   };
 
@@ -30,6 +30,8 @@ const Sensors: React.FC = () => {
   var [tenantId, setTenantId] = useState("");
   var [devices, setDevices] = useState<Device[]>([]);
   var [measurements, setMeasurements] = useState<Measurement[]>([]);
+  var [deviceError, setDeviceError] = useState(false);
+  var [measurementError, setMeasurementError] = useState(false);
 
   function capitalizeFirstLetter(val: string) 
   {
@@ -78,6 +80,10 @@ const Sensors: React.FC = () => {
         setDevices(res);
       })
     })
+    .catch(error => 
+    {
+      setDeviceError(true);
+    })
   }, [])
 
   //Fetching measurements
@@ -106,9 +112,15 @@ const Sensors: React.FC = () => {
         return measurements;
       })
 
-      const results = await Promise.all(promises);
-
-      setMeasurements(results.flat());
+      const results = await Promise.all(promises)
+      .then(res => 
+      {
+        setMeasurements(res.flat());
+      })
+      .catch(() => 
+      {
+        setMeasurementError(true);
+      })
     };
 
     loadMeasurements();
@@ -136,15 +148,19 @@ const Sensors: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {!devices ? (
-          <div className="col-span-full p-12 text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading sensors...</p>
-          </div>
-        ) 
-        : 
-        (
-          devices.map((device: Device) => (
+        {
+          deviceError ? 
+          (
+            <div className="col-span-full p-12 text-center">
+              <div className="text-red-500 text-6xl mb-4"></div>
+              <p className="text-red-600">
+                Couldn't fetch sensors.
+              </p>
+            </div>
+          )
+          :
+          devices.map((device: Device) => 
+          (
             <div
               key={device.id}
               className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm"
@@ -160,6 +176,9 @@ const Sensors: React.FC = () => {
                       {device.model}
                     </p>
                     {
+                      measurementError ?
+                      <p>Couldn't fetch measurements.</p>
+                      :
                       measurements.length == 0 ? 
                         <p>Loading...</p>
                         : 
@@ -182,7 +201,7 @@ const Sensors: React.FC = () => {
                 </span>
               </div>
             </div>
-          ))
+          )
         )}
       </div>
     </div>
