@@ -1,16 +1,19 @@
 import type { ApiResult } from "../types/ApiResult.ts";
 
+// URL for API
+const API_URL = import.meta.env.VITE_API_URL;
+
 // REGISTER
 export const registerUser = async (
     email: string,
     firstName: string,
     lastName: string,
-    password: string,
+    password: string, 
     confirmPassword: string
 ): Promise<ApiResult<null>> => {
     try {
         const res = await fetch(
-            `http://localhost:5296/api/auth/register`,
+            `${API_URL}/api/auth/register`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -50,7 +53,7 @@ export const loginUser = async (
 ): Promise<ApiResult<{ token: string; user: any }>> => {
     try {
         const res = await fetch(
-            `http://localhost:5296/api/auth/login`,
+            `${API_URL}/api/auth/login`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

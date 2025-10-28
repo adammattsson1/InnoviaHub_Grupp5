@@ -34,6 +34,9 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({
 
     const isAuthenticated = !!user;
 
+    // URL for API
+    const API_URL = import.meta.env.VITE_API_URL;
+
     // Check if user is already logged in on app start
     useEffect(() => {
         const checkAuth = async () => {
@@ -58,7 +61,7 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({
                         // Try to refresh token to ensure it's valid
                         try {
                             const refreshResponse = await fetch(
-                                `http://localhost:5296/api/auth/refresh-token`,
+                                `${API_URL}/api/auth/refresh-token`,
                                 {
                                     method: "POST",
                                     headers: {

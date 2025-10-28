@@ -1,6 +1,6 @@
 // API Service for Admin Dashboard
 
-import { ADMIN_API_BASE_URL, API_BASE_URL } from '../utils/constants';
+import { API_URL } from '../utils/constants';
 import type { 
   ApiResponse, 
   PagedResult, 
@@ -22,7 +22,7 @@ class ApiService {
   private token: string | null = null;
 
   constructor() {
-    this.baseURL = "http://localhost:5296/api";
+    this.baseURL = `${API_URL}`;
     this.token = localStorage.getItem('token');
   }
 
@@ -124,7 +124,7 @@ class ApiService {
       throw new Error('No token to refresh');
     }
 
-    const response = await fetch(`${API_BASE_URL}/auth/refresh-token`, {
+    const response = await fetch(`${API_URL}/auth/refresh-token`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ class ApiService {
   // Authentication
   async login(email: string, password: string): Promise<ApiResponse<{ token: string; user: User }>> {
     // Use direct API call for login (not admin API)
-    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -316,7 +316,7 @@ class ApiService {
   }
 
   async cancelBooking(id: number): Promise<string> {
-    const url = `${API_BASE_URL}/bookings/cancel/${id}`;
+    const url = `${API_URL}/bookings/cancel/${id}`;
     const token = this.token;
     
     const config: RequestInit = {

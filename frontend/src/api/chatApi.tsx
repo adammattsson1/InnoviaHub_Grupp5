@@ -1,6 +1,9 @@
+// URL for API
+const API_URL = import.meta.env.VITE_API_URL;
+
 export async function sendChatMessage(message: string): Promise<string>
 {
-    const res = await fetch(`http://localhost:5296/api/chat`, 
+    const res = await fetch(`${API_URL}/api/chat`, 
     {
         method: "POST",
         headers: 

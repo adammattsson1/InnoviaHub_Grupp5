@@ -1,11 +1,11 @@
 import type { Resource } from "@/types/resource";
 
-//Get APU url
-const BASE = import.meta.env.VITE_API_BASE_URL;
+// URL for API
+const API_URL = import.meta.env.VITE_API_URL;
 
 //Getting recourses from endpoint
 export async function fetchResources(token: string): Promise<Resource[]> {
-  const res = await fetch(`http://localhost:5296/api/resources`, {
+  const res = await fetch(`${API_URL}/api/resources`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 

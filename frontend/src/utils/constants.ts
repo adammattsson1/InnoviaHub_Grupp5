@@ -1,8 +1,7 @@
 // Admin Dashboard Constants
 
 // API Configuration
-export const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api`;
-export const ADMIN_API_BASE_URL = API_BASE_URL;
+export const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 
 // API Endpoints
 export const API_ENDPOINTS = {
