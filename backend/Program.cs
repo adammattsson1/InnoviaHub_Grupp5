@@ -53,7 +53,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 // Add Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    options.UseMySql(Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING"),
     new MySqlServerVersion(new Version(8, 0, 33))));
 
 // Add Identity
