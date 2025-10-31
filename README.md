@@ -22,17 +22,21 @@ Den skickar meddelandet till backend som sedan skickar den till OpenAI:s API. De
 Funktionen skickar tillbaka aktiva bokningar. När AI:n behöver bokningarna skickas ett "function call" till backend vilket sedan skickar resultaten av funktionen till Open AIs API.
 Sedan skickas API:ets svar på användarens meddelande.
 
-# Appbyggande
+# Instruktioner för lokalt appbyggande
 ## Nödvändiga installationer
 - .NET 8 eller 9
 - Node.js & npm
 - MySQL
 
 ## Databas
-- Skapa en SQL connection på localhost:3306.
-- Gå in på "appsettings.json" i backend-mappen.
-- I strängen "DefaultConnection", ändra "User" till din connections användarnamn och "Password" till din connections lösenord.
-- Sätt en secretkey till minst 32 tecken.
+- Skapa en MySQL connection.
+
+## Miljövariabler
+- Skapa en .env fil i backend.
+- Lägg till variabeln SQL_CONNECTION_STRING med värdet av din SQL connection i formatet "Server=SQL_Server;Database=SQL_Database;User="SQL_User";Password=SQL_Password".
+- (Valfritt) Lägg till variabeln OPENAI_API_KEY med värdet av en OPENAI api-nyckel. Detta krävs för att använda AI-assistenten.
+- Skapa en .env fil i frontend.
+- Lägg till variabeln VITE_API_URL med värdet av länken till backend. Default är "http://localhost:5296".
 
 ## Starta applikationen
 ```
